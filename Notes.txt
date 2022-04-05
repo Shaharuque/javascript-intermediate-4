@@ -1,0 +1,107 @@
+36-1 Module introduction Different way to Create Object
+JavaScript defines 5 types of primitive data types:
+string
+number
+boolean
+null
+undefined
+Primitive values are immutable (they are hardcoded and therefore cannot be changed).
+
+36-2 Object method property review:
+
+36-3 Keys, values, entries, delete, seal, freeze
+Object.seal(obj name)->
+1.cann't delete existing property
+2.cann't insert new property->value into object
+3.only can modify existing property value
+
+Object.freeze(object name)->
+1.cann't delete existing property
+2.cann't insert new (property:value)into object
+3.can't modify existing property value to
+
+36-4 Loop through an object using for in, for of, object entries
+here recommended:
+for array use-> for of loop
+for object use->for in loop
+#object property access:
+1.objectName.propertyName
+2.objectName["propertyName"]
+3.objectName[expression] //loop through ar kheterey
+
+36-5 (advanced) Compare objects, referential integrity:
+REmember:
+doita object dekhtey same but alada bhabey declare kora tara same object hobey na taader == or === diye compare kora jabey naa
+//simple doita object compare(nested object aivabey compare kora jabey na):
+//object compare
+const first = { a: 1, b: 2 };
+const second = { b: 2, a: 1 };
+function compareObject(first,second){
+    if(Object.keys(first).length !== Object.keys(second).length){
+        return false;
+    }
+
+    for(let key in first){
+        if(first[key]===second[key]){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+}
+
+const result=compareObject(first,second)
+if(result===true){
+    console.log('both object same')
+}
+else{
+    console.log('both object different')
+}
+
+
+36-6 (advanced) Use bind to borrow method from another object:
+Bind():With the bind() method, an object can borrow a method from another object so another object can use that borrowed method.
+->'kon object thekey method borrow korbey'.'kon method ta borrow korbey'.bind('kon object ar jnno borrow korbey')
+
+
+36-7 (advanced) Difference between bind, call and apply:
+##Functions are Methods
+Bind():With the bind() method, an object can borrow a method from another object to use that borrowed method.
+call():With call(), an object can use a method belonging to another object. 
+EXample of call():jar method use korbo sei object.method name.call(je nethod ta use korbey sei object,arguments/parmeter)
+
+
+const person = {
+  fullName: function(city, country) {
+    return this.firstName + " " + this.lastName + "," + city + "," + country;
+  }
+}
+
+const person1 = {
+  firstName:"John",
+  lastName: "Doe"
+}
+
+person.fullName.call(person1, "Oslo", "Norway");
+
+##for call() parameter pass korar smy segula comma separation use korey korbo
+##for apply() parameter pass korar smy segula ekta array tey rekhey use korey korbo
+aitae difference between apply() and call()
+
+const person = {
+  fullName: function(city, country) {
+    return this.firstName + " " + this.lastName + "," + city + "," + country;
+  }
+}
+
+const person1 = {
+  firstName:"John",
+  lastName: "Doe"
+}
+
+person.fullName.apply(person1, ["Oslo", "Norway"]);
+
+36-8 ( super advanced) Understand this keyword in JavaScript:
+
+
